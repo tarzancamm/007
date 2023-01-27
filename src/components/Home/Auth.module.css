@@ -17,6 +17,7 @@
 }
 
 .hero {
+    color: #A3000B;
 }
 
 .login-form {
@@ -24,6 +25,12 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+}
+
+.login-form h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 .login-form form {
@@ -34,7 +41,8 @@
 
 .login-form form input {
     border: none;
-    padding: 10px 30px;
+    width: 250px;
+    padding: 10px 15px;
 }
 
 .login-form button {
