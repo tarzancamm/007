@@ -10,9 +10,9 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={isAuth ? <Navigate to='/profile/:id' /> : <HomeScreen />} />
+        <Route path="/" element={isAuth ? <ProfileScreen /> : <HomeScreen />} />
         <Route path="/profile/:id" element={isAuth ? <ProfileScreen /> : <Navigate to='/' />} />
-        <Route path="*" element={<HomeScreen />} />
+        <Route path="*" element={<Navigate to='/' />} />
       </Routes>
     </div>
   );

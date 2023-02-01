@@ -31,7 +31,6 @@ const Auth = () => {
           })
         );
         navigate(`/profile/${res.data.userId}`);
-        console.log(res.data.userId);
       })
       .catch((err) => {
         console.log(err);
