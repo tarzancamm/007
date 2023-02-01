@@ -39,10 +39,23 @@
   gap: 1rem;
 }
 
-.login-form form input {
+.login-form input {
     border: none;
     width: 250px;
     padding: 10px 15px;
+    outline: none;
+}
+
+.login-form .create {
+    width: 250px;
+    color: #EFEFEF;
+    background-color: #020122;
+    padding: 10px 15px;
+}
+
+.login-form .create:hover {
+    background-color: #EFEFEF;
+    color: #020122;
 }
 
 .login-form button {

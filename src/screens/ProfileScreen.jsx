@@ -1,9 +1,23 @@
-import React from 'react'
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store/auth";
 
 const ProfileScreen = () => {
-  return (
-    <div>ProfileScreen</div>
-  )
-}
+  let navigate = useNavigate();
+  let dispatch = useDispatch();
 
-export default ProfileScreen
+  const logoutHandler = () => {
+    dispatch(authActions.logout());
+    navigate("/");
+  };
+
+  return (
+    <div>
+      <div>ProfileScreen</div>
+      <button onClick={logoutHandler}>Logout</button>
+    </div>
+  );
+};
+
+export default ProfileScreen;

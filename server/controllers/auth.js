@@ -19,7 +19,7 @@ module.exports = {
         const hash = bcrypt.hashSync(password, 10); // Salt is auto-generated
         const newUser = await User.create({
           username,
-          password: hash,
+          hashedPass: hash,
         });
         const token = createToken(
           newUser.dataValues.username,
