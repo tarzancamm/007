@@ -29,6 +29,7 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
   font-family: 'Rubik', sans-serif;
+  color: #191716;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -38,7 +39,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
   min-height: 100vh;
-  background-color: #EFEFEF;
+  background-color: #E0E2DB;
 }
 ol, ul {
 	list-style: none;

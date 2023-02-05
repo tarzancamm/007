@@ -27,6 +27,7 @@ const Auth = () => {
           authActions.login({
             token: res.data.token,
             userId: res.data.userId,
+            username: res.data.username,
             exp: res.data.exp,
           })
         );

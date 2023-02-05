@@ -1,10 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const token = localStorage.getItem('token') ? localStorage.getItem('token') : "";
+const token = localStorage.getItem("token")
+  ? localStorage.getItem("token")
+  : "";
+const username = localStorage.getItem("username")
+  ? localStorage.getItem("username")
+  : "";
+const userId = localStorage.getItem("userId")
+  ? localStorage.getItem("userId")
+  : null;
 
 const initialAuthState = {
   token,
-  userId: null,
+  username,
+  userId,
 };
 
 // Declaring logoutTimer variable in global scope for later use
@@ -44,27 +53,29 @@ const authSlice = createSlice({
   initialState: initialAuthState,
   reducers: {
     login(state, action) {
-      state.token = action.payload.token
-      state.userId = action.payload.userId
-      localStorage.setItem("token", state.token)
-      localStorage.setItem("userId", state.userId)
-      localStorage.setItem("exp", action.payload.exp)
-      
+      state.token = action.payload.token;
+      state.userId = action.payload.userId;
+      state.username = action.payload.username;
+      localStorage.setItem("token", state.token);
+      localStorage.setItem("userId", state.userId);
+      localStorage.setItem("exp", action.payload.exp);
+      localStorage.setItem("username", state.username);
+
       const remainingExpTime = calculateRemainingTime(action.payload.exp);
 
       logoutTimer = setTimeout(authSlice.actions.logout, remainingExpTime); //Runs logout function after delay (remainingExpTime)
     },
     logout(state) {
-        state.token = null
-        state.userId = null
-        localStorage.removeItem("token")
-        localStorage.removeItem("userId")
-        localStorage.removeItem("exp")
+      state.token = null;
+      state.userId = null;
+      localStorage.removeItem("token");
+      localStorage.removeItem("userId");
+      localStorage.removeItem("exp");
 
-        if (logoutTimer) {
-            clearTimeout(logoutTimer)
-        }
-    }
+      if (logoutTimer) {
+        clearTimeout(logoutTimer);
+      }
+    },
   },
 });
 
