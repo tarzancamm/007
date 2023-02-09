@@ -28,4 +28,15 @@ module.exports = {
       res.status(400).send("Could not add to To Do");
     }
   },
+
+  deleteTodo: async (req, res) => {
+    try {
+      const {id} = req.params
+      await Todo.destroy({where: {id: +id}})
+      res.sendStatus(200)
+    } catch (err) {
+      console.log(err)
+      res.status(400).send("Could not delete To Do")
+    }
+  }
 };

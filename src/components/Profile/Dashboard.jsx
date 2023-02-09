@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import ListItem from "./ListItem";
@@ -9,11 +9,7 @@ const Dashboard = (props) => {
   const todoRef = useRef();
   const userId = useSelector((state) => state.auth.userId);
 
-  useEffect(() => {
-    getTodo();
-  }, []);
-
-  const getTodo = () => {
+  const getTodo = useCallback(() => {
     axios
       .get(`/todo/${userId}`)
       .then((res) => {
@@ -22,7 +18,17 @@ const Dashboard = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  };
+  }, [userId]);
+
+  useEffect(() => {
+    getTodo();
+  }, [getTodo]);
+
+  const deleteHandler = (id) => {
+    axios
+      .delete(`/todo/${id}`)
+      .then()
+  }
 
   const todoHandler = (e) => {
     e.preventDefault();
@@ -44,9 +50,10 @@ const Dashboard = (props) => {
 
   const mappedTodo = todos.map((todos) => {
     return (
-      <li>
+      <div className={styles.listItem}>
         <ListItem key={todos.id} content={todos.content} />
-      </li>
+        <button onClick={() => deleteHandler(todos.id)}>X</button>
+      </div>
     );
   });
 
@@ -54,7 +61,7 @@ const Dashboard = (props) => {
     <div className={styles.dashboard}>
       <div className={styles.todo}>
         <h3>To Do</h3>
-        <ul>{mappedTodo}</ul>
+        <main>{mappedTodo}</main>
         <form onSubmit={todoHandler} className={styles.input}>
           <input type="text" ref={todoRef} placeholder="To Do" />
           <button>Submit</button>
