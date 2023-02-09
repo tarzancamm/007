@@ -27,8 +27,13 @@ const Dashboard = (props) => {
   const deleteHandler = (id) => {
     axios
       .delete(`/todo/${id}`)
-      .then()
-  }
+      .then(() => {
+        getTodo();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const todoHandler = (e) => {
     e.preventDefault();
@@ -50,8 +55,8 @@ const Dashboard = (props) => {
 
   const mappedTodo = todos.map((todos) => {
     return (
-      <div className={styles.listItem}>
-        <ListItem key={todos.id} content={todos.content} />
+      <div key={todos.id} className={styles.listItem}>
+        <ListItem content={todos.content} />
         <button onClick={() => deleteHandler(todos.id)}>X</button>
       </div>
     );
