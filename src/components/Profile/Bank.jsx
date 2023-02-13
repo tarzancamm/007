@@ -24,20 +24,20 @@ const Bank = () => {
       <p>Customize Your Dashboard</p>
       <div>
         <div>
-          <label htmlFor="">To-Do</label>
-          <input type="checkbox" onChange={() => setShowTodo(!showTodo)} />
+          <label htmlFor="todo">To-Do</label>
+          <input type="checkbox" id="todo" onChange={() => setShowTodo(!showTodo)} />
         </div>
         <div>
-          <label htmlFor="">Weightlifting PRs</label>
-          <input type="checkbox" onChange={() => setShowPr(!showPr)} />
+          <label htmlFor="pr">Weightlifting PRs</label>
+          <input type="checkbox" id="pr" onChange={() => setShowPr(!showPr)} />
         </div>
         <div>
-          <label htmlFor="">Lifts</label>
-          <input type="checkbox" onChange={() => setShowLift(!showLift)} />
+          <label htmlFor="lifts">Lifts</label>
+          <input type="checkbox" id="lifts" onChange={() => setShowLift(!showLift)} />
         </div>
         <div>
-          <label htmlFor="">Thoughts</label>
-          <input type="checkbox" onChange={() => setShowThought(!showThought)} />
+          <label htmlFor="thoughts">Thoughts</label>
+          <input type="checkbox" id="thoughts" onChange={() => setShowThought(!showThought)} />
         </div>
       </div>
       <button onClick={logoutHandler}>Logout</button>

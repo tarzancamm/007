@@ -3,3 +3,7 @@
     height: 100vh;
     background-color: #3D348B;
 }
+
+.bank label {
+    color: white;
+}

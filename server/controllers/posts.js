@@ -22,7 +22,7 @@ module.exports = {
     try {
       const { userId, content } = req.body;
       await Todo.create({ userId, content });
-      res.status(200);
+      res.sendStatus(200);
     } catch (err) {
       console.log(err);
       res.status(400).send("Could not add to To Do");

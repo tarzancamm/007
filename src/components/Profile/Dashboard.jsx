@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import ListItem from "./ListItem";
@@ -6,9 +6,10 @@ import styles from "./Dashboard.module.css";
 
 const Dashboard = (props) => {
   const [todos, setTodos] = useState([]);
-  const todoRef = useRef();
+  const [todoItem, setTodoItem] = useState('')
   const userId = useSelector((state) => state.auth.userId);
 
+//! ToDo
   const getTodo = useCallback(() => {
     axios
       .get(`/todo/${userId}`)
@@ -29,6 +30,7 @@ const Dashboard = (props) => {
       .delete(`/todo/${id}`)
       .then(() => {
         getTodo();
+        console.log("deleted")
       })
       .catch((err) => {
         console.log(err);
@@ -39,7 +41,7 @@ const Dashboard = (props) => {
     e.preventDefault();
 
     let body = {
-      content: todoRef.current.value,
+      content: todoItem,
       userId,
     };
 
@@ -47,6 +49,7 @@ const Dashboard = (props) => {
       .post(`/todo/${userId}`, body)
       .then(() => {
         getTodo();
+        console.log('added')
       })
       .catch((err) => {
         console.log(err);
@@ -55,24 +58,29 @@ const Dashboard = (props) => {
 
   const mappedTodo = todos.map((todos) => {
     return (
-      <div key={todos.id} className={styles.listItem}>
+      <li key={todos.id} className={styles.listItem}>
         <ListItem content={todos.content} />
         <button onClick={() => deleteHandler(todos.id)}>X</button>
-      </div>
+      </li>
     );
   });
 
+  //! Lifts
+
+
   return (
     <div className={styles.dashboard}>
-      <div className={styles.todo}>
+      <div className={styles.box}>
         <h3>To Do</h3>
-        <main>{mappedTodo}</main>
+        <ul>{mappedTodo}</ul>
         <form onSubmit={todoHandler} className={styles.input}>
-          <input type="text" ref={todoRef} placeholder="To Do" />
+          <input type="text" onChange={(e) => setTodoItem(e.target.value)} value={todoItem} placeholder="To Do" />
           <button>Submit</button>
         </form>
       </div>
-      <div className={styles.lifts}></div>
+      <div className={styles.box}>
+        <h3>Lifts</h3>
+      </div>
     </div>
   );
 };
