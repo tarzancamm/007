@@ -8,7 +8,7 @@ const db = require("./util/database");
 const {User, Todo, Lift, Thought, Pr} = require('./util/models')
 
 const { registerUser, login } = require("./controllers/auth");
-const {getTodo, addTodo, deleteTodo} = require("./controllers/posts")
+const {getTodo, addTodo, deleteTodo, getLift, addLift, deleteLift} = require("./controllers/posts")
 
 // Middleware
 server.use(express.json()); //parses requests into json
@@ -30,8 +30,12 @@ server.post("/register", registerUser);
 server.post("/login", login);
 
 server.get('/todo/:userId', getTodo)
-server.post('/todo/:userId', addTodo)
+server.post('/todo', addTodo)
 server.delete('/todo/:id', deleteTodo)
+
+server.get('/lifts/:userId', getLift)
+server.post('/lifts', addLift)
+server.delete('/lifts/:id', deleteLift)
 
 db.sync().then(() => {
   server.listen(PORT, () => {

@@ -6,10 +6,15 @@ import styles from "./Dashboard.module.css";
 
 const Dashboard = (props) => {
   const [todos, setTodos] = useState([]);
-  const [todoItem, setTodoItem] = useState('')
+  const [todoItem, setTodoItem] = useState("");
+
+  const [lifts, setLifts] = useState([]);
+  const [liftItem, setLiftItem] = useState("")
+
   const userId = useSelector((state) => state.auth.userId);
 
-//! ToDo
+  //! ToDo
+  // Functions in React - function object is created each time component is re-rendered. useCallback memo-izes the function so it only runs if dependency changes.
   const getTodo = useCallback(() => {
     axios
       .get(`/todo/${userId}`)
@@ -21,16 +26,11 @@ const Dashboard = (props) => {
       });
   }, [userId]);
 
-  useEffect(() => {
-    getTodo();
-  }, [getTodo]);
-
-  const deleteHandler = (id) => {
+  const deleteTodoHandler = (id) => {
     axios
       .delete(`/todo/${id}`)
       .then(() => {
         getTodo();
-        console.log("deleted")
       })
       .catch((err) => {
         console.log(err);
@@ -46,10 +46,10 @@ const Dashboard = (props) => {
     };
 
     axios
-      .post(`/todo/${userId}`, body)
+      .post(`/todo`, body)
       .then(() => {
         getTodo();
-        console.log('added')
+        setTodoItem("");
       })
       .catch((err) => {
         console.log(err);
@@ -60,13 +60,68 @@ const Dashboard = (props) => {
     return (
       <li key={todos.id} className={styles.listItem}>
         <ListItem content={todos.content} />
-        <button onClick={() => deleteHandler(todos.id)}>X</button>
+        <button onClick={() => deleteTodoHandler(todos.id)}>X</button>
       </li>
     );
   });
 
-  //! Lifts
 
+  //! Lifts
+  const getLifts = useCallback(() => {
+    axios
+      .get(`/lifts/${userId}`)
+      .then((res) => {
+        setLifts(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [userId]);
+
+  const deleteLiftHandler = (id) => {
+    axios
+      .delete(`/lifts/${id}`)
+      .then(() => {
+        getLifts();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const liftHandler = (e) => {
+    e.preventDefault();
+
+    let body = {
+      userId,
+      content: liftItem,
+    };
+
+    axios
+      .post(`/lifts`, body)
+      .then(() => {
+        getLifts();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const mappedLifts = lifts.map((lifts) => {
+    return (
+      <li key={lifts.id} className={styles.listItem}>
+        <ListItem content={lifts.content} />
+        <button onClick={() => deleteLiftHandler(lifts.id)}>X</button>
+      </li>
+    );
+  });
+
+
+  //! Get All Lists
+  useEffect(() => {
+    getTodo();
+    getLifts();
+  }, [getTodo, getLifts]);
 
   return (
     <div className={styles.dashboard}>
@@ -74,12 +129,22 @@ const Dashboard = (props) => {
         <h3>To Do</h3>
         <ul>{mappedTodo}</ul>
         <form onSubmit={todoHandler} className={styles.input}>
-          <input type="text" onChange={(e) => setTodoItem(e.target.value)} value={todoItem} placeholder="To Do" />
+          <input
+            type="text"
+            onChange={(e) => setTodoItem(e.target.value)}
+            value={todoItem}
+            placeholder="To Do"
+          />
           <button>Submit</button>
         </form>
       </div>
       <div className={styles.box}>
         <h3>Lifts</h3>
+        <ul>{mappedLifts}</ul>
+        <form onSubmit={liftHandler} className={styles.input}>
+          <input type="text" onChange={(e) => setLiftItem(e.target.value)} value={liftItem} placeholder="Lift" />
+          <button>Submit</button>
+        </form>
       </div>
     </div>
   );

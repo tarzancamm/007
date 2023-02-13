@@ -31,12 +31,45 @@ module.exports = {
 
   deleteTodo: async (req, res) => {
     try {
-      const {id} = req.params
-      await Todo.destroy({where: {id: +id}})
-      res.sendStatus(200)
+      const { id } = req.params;
+      await Todo.destroy({ where: { id: +id } });
+      res.sendStatus(200);
     } catch (err) {
-      console.log(err)
-      res.status(400).send("Could not delete To Do")
+      console.log(err);
+      res.status(400).send("Could not delete To Do");
     }
-  }
+  },
+
+  getLift: async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const liftList = await Lift.findAll({ where: { userId: userId } });
+      res.status(200).send(liftList);
+    } catch (err) {
+      console.log(err);
+      res.status(400).send("Could not retrieve Lifts list");
+    }
+  },
+
+  addLift: async (req, res) => {
+    try {
+      const { userId, content } = req.body;
+      await Lift.create({ userId, content });
+      res.sendStatus(200);
+    } catch (err) {
+      console.log(err);
+      res.status(400).send("Could not add to Lifts");
+    }
+  },
+
+  deleteLift: async (req, res) => {
+    try {
+      const { id } = req.params;
+      await Lift.destroy({ where: { id: +id } });
+      res.sendStatus(200);
+    } catch (err) {
+      console.log(err);
+      res.status(400).send("Could not delete Lift");
+    }
+  },
 };
