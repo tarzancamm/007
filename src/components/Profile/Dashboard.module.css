@@ -2,21 +2,22 @@
   position: absolute;
   top: 0;
   left: 350px;
+  height: 100vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  padding: 2rem;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .box {
   width: 500px;
-  height: 200px;
-  border: 2px solid #C5C6C7;
+  height: 250px;
+  border: 2px solid #c5c6c7;
   border-radius: 15px;
   overflow-y: scroll;
   scroll-behavior: smooth;
+  margin: 1rem;
 }
 
 .box::-webkit-scrollbar {
@@ -24,13 +25,13 @@
 }
 
 .box::-webkit-scrollbar-track {
-  background: #C5C6C7;
+  background: #1f2833;
   border-radius: 10px;
-  margin: 5px;
+  margin: 20px;
 }
 
 .box::-webkit-scrollbar-thumb {
-  background-color: #66FCF1;
+  background-color: #c5c6c7;
   border-radius: 10px;
 }
 
@@ -53,13 +54,13 @@
 }
 
 .listItem button {
-    color: #E6E8E6;
+  color: #e6e8e6;
   border: none;
   background-color: transparent;
 }
 
 .listItem button:hover {
-  color: #C24D18;
+  color: #45a29e;
   cursor: pointer;
 }
 
@@ -78,14 +79,16 @@
 
 .input button {
   border: none;
+  border-bottom: 1px solid #66fcf1;
   border-radius: 5px;
   padding: 5px 10px;
-  background-color: #66FCF1;
-  color: #1F2833;
+  background-color: #66fcf1;
+  color: #1f2833;
 }
 
 .input button:hover {
-  background-color: #1F2833;
-  color: #66FCF1;
+  background-color: transparent;
+  color: #66fcf1;
   cursor: pointer;
+  border: 1px solid #66fcf1;
 }

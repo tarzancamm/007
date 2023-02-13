@@ -1,6 +1,6 @@
 .bank {
     width: 350px;
-    height: 100vh;
+    height: 100%;
     background-color: #0B0C10;
     border-right: 2px solid #C5C6C7;
 }
@@ -24,8 +24,10 @@
     font-size: 1.3rem;
     color: #ffffff;
     text-align: center;
-    text-decoration: underline;
+    border-bottom: 1px solid #45A29E;
     padding-top: 3rem;
+    padding-bottom: 8px;
+    margin: 0 1.5rem;
 }
 
 .checkbox {
@@ -54,15 +56,16 @@
     position: absolute;
     bottom: 5%;
     padding: 5px 15px;
-    border: none;
+    border: 1px solid #66FCF1;
     border-radius: 5px;
     background-color: #66FCF1;
 }
 
 .logout button:hover {
-    background-color: #1F2833;
+    background-color: transparent;
     color: #66FCF1;
     cursor: pointer;
+    border: 1px solid #66FCF1;
 }
 
 .bank-lists {

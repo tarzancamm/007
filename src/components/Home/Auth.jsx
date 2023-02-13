@@ -41,9 +41,6 @@ const Auth = () => {
   return (
     <div className={styles.page}>
       <div className={styles.container}>
-        <div className={styles.hero}>
-          <h3>Hero Section</h3>
-        </div>
         <div className={styles["login-form"]}>
           <h3>{register ? "Sign Up" : "Login"}</h3>
           <form onSubmit={submitHandler}>
@@ -53,7 +50,7 @@ const Auth = () => {
               {register ? "Create" : "Sign In"}
             </button>
           </form>
-          <button onClick={() => setRegister(!register)}>
+          <button className={styles.switch} onClick={() => setRegister(!register)}>
             {register ? "Login" : "Create Account"}
           </button>
         </div>

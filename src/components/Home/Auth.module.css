@@ -11,7 +11,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 1px solid black;
   width: 65vw;
   height: 65vh;
 }
@@ -48,26 +47,28 @@
 
 .login-form .create {
     width: 250px;
-    color: #EFEFEF;
-    background-color: #020122;
+    color: #0B0C10;
+    background-color: #66FCF1;
     padding: 10px 15px;
+    border: 1px solid #66FCF1;
 }
 
 .login-form .create:hover {
-    background-color: #EFEFEF;
-    color: #020122;
-}
-
-.login-form button {
-    color: #0B0C10;
-    background-color: #66FCF1;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 15px;
-}
-
-.login-form button:hover {
-    cursor: pointer;
+    background-color: #0B0C10;
     color: #66FCF1;
+    border: 1px solid #66FCF1;
+    cursor: crosshair;
+}
+
+.switch {
+    color: #66FCF1;
+    background-color: transparent;
+    border: none;
+    margin-top: 4rem;
+}
+
+.switch:hover {
+    cursor: pointer;
+    color: #C5C6C7;
     background-color: #0B0C10;
 }
