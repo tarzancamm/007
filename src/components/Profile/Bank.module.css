@@ -1,26 +1,48 @@
 .bank {
     width: 350px;
     height: 100vh;
-    background-color: #3D348B;
+    background-color: #0B0C10;
+    border-right: 2px solid #C5C6C7;
 }
 
 .bank label {
-    color: white;
+    color: #C5C6C7;
+}
+
+.bank label:hover {
+    cursor: pointer;
 }
 
 .bank p {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #ffffff;
     text-align: center;
     padding-top: 3rem;
 }
 
 .bank h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #ffffff;
     text-align: center;
     text-decoration: underline;
     padding-top: 3rem;
+}
+
+.checkbox {
+    -webkit-appearance: none;
+    background-color: #C5C6C7;
+    padding: 9px;
+    border-radius: 5px;
+    display: inline-block;
+    position: relative;
+}
+
+.checkbox:hover {
+    cursor: pointer;
+}
+
+.checkbox:checked {
+    background-color: #66FCF1;
 }
 
 .logout {
@@ -29,14 +51,17 @@
 }
 
 .logout button {
+    position: absolute;
+    bottom: 5%;
     padding: 5px 15px;
     border: none;
     border-radius: 5px;
+    background-color: #66FCF1;
 }
 
 .logout button:hover {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #1F2833;
+    color: #66FCF1;
     cursor: pointer;
 }
 
@@ -46,5 +71,12 @@
     gap: 1rem;
     margin-top: 8%;
     margin-bottom: 8%;
-    padding-left: 1rem;
+}
+
+.bank-lists-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 25px;
 }

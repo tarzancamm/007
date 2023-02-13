@@ -9,6 +9,10 @@ const Bank = () => {
   let navigate = useNavigate();
   let dispatch = useDispatch();
   const name = useSelector((state) => state.auth.username);
+  const todo = useSelector((state) => state.list.showTodos)
+  const pr = useSelector((state) => state.list.showPrs)
+  const thought = useSelector((state) => state.list.showThoughts)
+  const lift = useSelector((state) => state.list.showLifts)
 
   const logoutHandler = () => {
     dispatch(authActions.logout());
@@ -16,42 +20,42 @@ const Bank = () => {
   };
 
   const todoHandler = () => {
-    dispatch(listActions.todos())
-  }
+    dispatch(listActions.todos());
+  };
   const prHandler = () => {
-    dispatch(listActions.prs())
-  }
+    dispatch(listActions.prs());
+  };
   const thoughtHandler = () => {
-    dispatch(listActions.thoughts())
-  }
+    dispatch(listActions.thoughts());
+  };
   const liftHandler = () => {
-    dispatch(listActions.lifts())
-  }
+    dispatch(listActions.lifts());
+  };
 
   return (
     <div className={styles.bank}>
       <p>Welcome, {name}</p>
       <h3>Customize Your Dashboard</h3>
-      <div className={styles['bank-lists']}>
-        <div>
+      <div className={styles["bank-lists"]}>
+        <div className={styles['bank-lists-item']}>
           <label htmlFor="todo">To-Do</label>
-          <input type="checkbox" id="todo" onChange={todoHandler} />
+          <input className={styles.checkbox} type="checkbox" id="todo" onChange={todoHandler} checked={todo} />
         </div>
-        <div>
+        <div className={styles['bank-lists-item']}>
           <label htmlFor="pr">Weightlifting PRs</label>
-          <input type="checkbox" id="pr" onChange={prHandler} />
+          <input className={styles.checkbox} type="checkbox" id="pr" onChange={prHandler} checked={pr} />
         </div>
-        <div>
+        <div className={styles['bank-lists-item']}>
           <label htmlFor="lifts">Lifts</label>
-          <input type="checkbox" id="lifts" onChange={liftHandler} />
+          <input className={styles.checkbox} type="checkbox" id="lifts" onChange={liftHandler} checked={lift} />
         </div>
-        <div>
+        <div className={styles['bank-lists-item']}>
           <label htmlFor="thoughts">Thoughts</label>
-          <input type="checkbox" id="thoughts" onChange={thoughtHandler} />
+          <input className={styles.checkbox} type="checkbox" id="thoughts" onChange={thoughtHandler} checked={thought} />
         </div>
       </div>
       <div className={styles.logout}>
-      <button onClick={logoutHandler}>Logout</button>
+        <button onClick={logoutHandler}>Logout</button>
       </div>
     </div>
   );

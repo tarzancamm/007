@@ -59,11 +59,15 @@
 }
 
 .login-form button {
-    background-color: #EFEFEF;
+    color: #0B0C10;
+    background-color: #66FCF1;
     border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
 }
 
 .login-form button:hover {
     cursor: pointer;
-    color: #9FA4A9;
+    color: #66FCF1;
+    background-color: #0B0C10;
 }

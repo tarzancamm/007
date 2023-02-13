@@ -13,15 +13,31 @@
 .box {
   width: 500px;
   height: 200px;
-  border: 1px solid black;
-  border-radius: 10px;
+  border: 2px solid #C5C6C7;
+  border-radius: 15px;
   overflow-y: scroll;
   scroll-behavior: smooth;
+}
+
+.box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.box::-webkit-scrollbar-track {
+  background: #C5C6C7;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.box::-webkit-scrollbar-thumb {
+  background-color: #66FCF1;
+  border-radius: 10px;
 }
 
 .box h3 {
   font-weight: bold;
   padding: 15px;
+  color: #ffffff;
 }
 
 .box ul {
@@ -37,12 +53,13 @@
 }
 
 .listItem button {
+    color: #E6E8E6;
   border: none;
   background-color: transparent;
 }
 
 .listItem button:hover {
-  color: #0d5c63;
+  color: #C24D18;
   cursor: pointer;
 }
 
@@ -63,12 +80,12 @@
   border: none;
   border-radius: 5px;
   padding: 5px 10px;
-  background-color: #0d5c63;
-  color: #ffffff;
+  background-color: #66FCF1;
+  color: #1F2833;
 }
 
 .input button:hover {
-  background-color: #ffffff;
-  color: #0d5c63;
+  background-color: #1F2833;
+  color: #66FCF1;
   cursor: pointer;
 }
