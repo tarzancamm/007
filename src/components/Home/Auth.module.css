@@ -68,7 +68,7 @@
 }
 
 .switch:hover {
-    cursor: pointer;
+    cursor: crosshair;
     color: #C5C6C7;
     background-color: #0B0C10;
 }

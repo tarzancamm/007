@@ -6,8 +6,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .box {
@@ -17,7 +16,8 @@
   border-radius: 15px;
   overflow-y: scroll;
   scroll-behavior: smooth;
-  margin: 1rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
 }
 
 .box::-webkit-scrollbar {
@@ -61,7 +61,7 @@
 
 .listItem button:hover {
   color: #45a29e;
-  cursor: pointer;
+  cursor: crosshair;
 }
 
 .input {
@@ -89,6 +89,6 @@
 .input button:hover {
   background-color: transparent;
   color: #66fcf1;
-  cursor: pointer;
+  cursor: crosshair;
   border: 1px solid #66fcf1;
 }
