@@ -9,9 +9,13 @@ const username = localStorage.getItem("username")
 const userId = localStorage.getItem("userId")
   ? localStorage.getItem("userId")
   : null;
+const email = localStorage.getItem("email")
+  ? localStorage.getItem("email")
+  : "";
 
 const initialAuthState = {
   token,
+  email,
   username,
   userId,
 };
@@ -56,6 +60,7 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.userId = action.payload.userId;
       state.username = action.payload.username;
+      state.email = action.payload.email;
       localStorage.setItem("token", state.token);
       localStorage.setItem("userId", state.userId);
       localStorage.setItem("exp", action.payload.exp);
@@ -71,6 +76,7 @@ const authSlice = createSlice({
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
       localStorage.removeItem("exp");
+      localStorage.removeItem("username");
 
       if (logoutTimer) {
         clearTimeout(logoutTimer);

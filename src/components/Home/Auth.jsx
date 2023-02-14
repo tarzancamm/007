@@ -7,7 +7,7 @@ import styles from "./Auth.module.css";
 
 const Auth = () => {
   const [register, setRegister] = useState(false);
-  const usernameRef = useRef();
+  const [username, setUsername] = useState('')
   const emailRef = useRef();
   const passwordRef = useRef();
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const Auth = () => {
     e.preventDefault();
 
     let body = {
-      username: usernameRef.current.value,
+      username,
       email: emailRef.current.value,
       password: passwordRef.current.value,
     };
@@ -29,6 +29,7 @@ const Auth = () => {
           authActions.login({
             token: res.data.token,
             userId: res.data.userId,
+            email: res.data.email,
             username: res.data.username,
             exp: res.data.exp,
           })
@@ -46,7 +47,7 @@ const Auth = () => {
         <div className={styles["login-form"]}>
           <h3>{register ? "Sign Up" : "Login"}</h3>
           <form onSubmit={submitHandler}>
-            {register && <input type="text" placeholder="First Name" ref={usernameRef} />}
+            {register && <input type="text" placeholder="First Name" onChange={(e) => setUsername(e.target.value)} />}
             <input type="text" placeholder="Email" ref={emailRef} />
             <input type="password" placeholder="Password" ref={passwordRef} />
             <button className={styles.create}>
